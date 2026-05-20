@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For Saumya</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css?v=20260519-1" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <section id="publicLanding" class="landing">
+        <nav class="public-nav">
+          <div class="brand-mark">S</div>
+          <button class="ghost-button" id="openLoginButton" type="button">Login</button>
+        </nav>
+
+        <main class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">May 24 · Saumya</p>
+            <h1>For Saumya</h1>
+            <p class="hero-text">
+              A tiny stage, a private archive, and a few surprises waiting behind the curtain.
+            </p>
+            <div class="hero-actions">
+              <button class="primary-button" id="heroLoginButton" type="button">Enter backstage</button>
+              <span id="publicCountdown" class="countdown-chip">Opening soon</span>
+            </div>
+          </div>
+
+          <div class="stage-visual" aria-label="K-pop inspired stage illustration">
+            <div class="spotlight spotlight-one"></div>
+            <div class="spotlight spotlight-two"></div>
+            <div class="record">
+              <div class="record-ring"></div>
+              <div class="record-label">24</div>
+            </div>
+            <div class="equalizer" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="ticket-card">
+              <span>VIP PASS</span>
+              <strong>SAUMYA</strong>
+            </div>
+          </div>
+        </main>
+      </section>
+
+      <section id="loginPanel" class="login-panel hidden" aria-labelledby="loginTitle">
+        <div class="login-card">
+          <button class="icon-button close-login" id="closeLoginButton" type="button" aria-label="Close login">×</button>
+          <p class="eyebrow">Restricted access</p>
+          <h2 id="loginTitle">Backstage Login</h2>
+          <p class="muted">Only approved accounts can enter. There is no public signup.</p>
+          <form id="loginForm" class="stacked-form">
+            <label>
+              Email
+              <input id="emailInput" type="email" autocomplete="email" required placeholder="you@example.com" />
+            </label>
+            <label>
+              Password
+              <input id="passwordInput" type="password" autocomplete="current-password" required placeholder="Private password" />
+            </label>
+            <button class="primary-button full-width" type="submit">Unlock</button>
+          </form>
+          <p id="loginMessage" class="form-message" role="status"></p>
+        </div>
+      </section>
+
+      <section id="privateApp" class="private-app hidden">
+        <aside class="sidebar">
+          <div class="sidebar-brand">
+            <div class="brand-mark">S</div>
+            <div>
+              <strong>Saumya</strong>
+              <span>private room</span>
+            </div>
+          </div>
+          <button class="nav-item active" type="button" data-view="homeView">Home</button>
+          <button class="nav-item" type="button" data-view="letterView">Letter</button>
+          <button class="nav-item" type="button" data-view="karaokeView">Karaoke Battle</button>
+          <button class="nav-item" type="button" data-view="scoreboardView">Scoreboard</button>
+          <button class="nav-item" type="button" data-view="saumyaView">Saumyaaaaa</button>
+          <button class="nav-item" type="button" data-view="surpriseView">Final Surprise</button>
+          <button class="nav-item admin-only hidden" type="button" data-view="adminView">Admin</button>
+          <button class="logout-button" id="logoutButton" type="button">Log out</button>
+        </aside>
+
+        <main class="content">
+          <header class="content-header">
+            <div>
+              <p class="eyebrow">Backstage unlocked</p>
+              <h2 id="viewTitle">Home</h2>
+            </div>
+            <div class="profile-pill" id="profilePill">Private</div>
+          </header>
+
+          <section id="homeView" class="view active-view">
+            <div class="dashboard-grid">
+              <article class="panel wide-panel">
+                <p class="eyebrow">May 24</p>
+                <h3>A private stage for two</h3>
+                <p>
+                  This space keeps the sentimental parts away from the public page:
+                  your letter, karaoke battles, scores, notes, photos, and every new memory you add.
+                </p>
+                <div class="stat-row">
+                  <div><strong id="totalScores">0</strong><span>karaoke attempts</span></div>
+                  <div><strong id="totalNotes">0</strong><span>Saumyaaaaa posts</span></div>
+                  <div><strong id="topScore">--</strong><span>best score</span></div>
+                </div>
+              </article>
+              <article class="panel">
+                <p class="eyebrow">Next</p>
+                <h3>Record a round</h3>
+                <p>Pick a challenge, sing, and save the score to the permanent archive.</p>
+                <button class="secondary-button" type="button" data-jump="karaokeView">Start karaoke</button>
+              </article>
+              <article class="panel">
+                <p class="eyebrow">Archive</p>
+                <h3>Saumyaaaaa</h3>
+                <p>Add notes, photos, links, or tiny things you want her to find later.</p>
+                <button class="secondary-button" type="button" data-jump="saumyaView">Open archive</button>
+              </article>
+            </div>
+          </section>
+
+          <section id="letterView" class="view">
+            <article class="panel reading-panel">
+              <p class="eyebrow">Private letter</p>
+              <h3>Dear Saumya,</h3>
+              <div id="letterBody" class="letter-body"></div>
+            </article>
+          </section>
+
+          <section id="karaokeView" class="view">
+            <div class="battle-layout">
+              <article class="panel">
+                <p class="eyebrow">Karaoke battle</p>
+                <h3>Record your round</h3>
+                <form id="karaokeForm" class="stacked-form">
+                  <label>
+                    Singer
+                    <select id="singerInput" required></select>
+                  </label>
+                  <label>
+                    Challenge
+                    <select id="challengeInput" required></select>
+                  </label>
+                  <label>
+                    Song
+                    <select id="songCatalogInput"></select>
+                  </label>
+                  <div id="selectedSongCard" class="song-card hidden">
+                    <div>
+                      <strong id="selectedSongTitle">Selected song</strong>
+                      <p id="selectedSongNote" class="muted"></p>
+                    </div>
+                    <div class="song-actions">
+                      <a class="secondary-link" id="openYoutubeButton" href="#" target="_blank" rel="noreferrer">Search YouTube</a>
+                      <a class="secondary-link" id="openLyricsButton" href="#" target="_blank" rel="noreferrer">Open lyrics</a>
+                    </div>
+                  </div>
+                  <label>
+                    Custom song name
+                    <input id="songInput" type="text" required placeholder="Song or round name" />
+                  </label>
+                  <label>
+                    YouTube search phrase
+                    <input id="youtubeSearchInput" type="text" readonly placeholder="Song + karaoke version" />
+                  </label>
+                  <label>
+                    YouTube video URL to embed
+                    <input id="youtubeEmbedUrlInput" type="url" placeholder="Paste a specific YouTube video link here" />
+                  </label>
+                  <input id="songArtistInput" type="hidden" />
+                  <input id="youtubeUrlInput" type="hidden" />
+                  <input id="lyricsUrlInput" type="hidden" />
+                  <div class="youtube-player">
+                    <iframe
+                      id="youtubeFrame"
+                      class="hidden"
+                      title="YouTube karaoke video"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen
+                    ></iframe>
+                    <div id="youtubeEmptyState" class="youtube-empty">
+                      Paste a specific YouTube video link to embed it here, or use Search YouTube to find a karaoke version.
+                    </div>
+                  </div>
+                  <div class="recorder-box">
+                    <label>
+                      Recording mode
+                      <select id="recordingModeInput">
+                        <option value="audio">Audio only</option>
+                        <option value="video">Video + audio</option>
+                      </select>
+                    </label>
+                    <video id="cameraPreview" class="camera-preview hidden" autoplay muted playsinline></video>
+                    <div class="meter" aria-hidden="true"><span id="volumeMeter"></span></div>
+                    <div class="recorder-actions">
+                      <button class="record-button" id="recordButton" type="button">Start recording</button>
+                      <button class="secondary-button" id="stopButton" type="button" disabled>Stop</button>
+                    </div>
+                    <audio id="audioPlayback" controls class="hidden"></audio>
+                    <video id="videoPlayback" class="saved-performance hidden" controls playsinline></video>
+                    <p id="recordingStatus" class="muted">Microphone or camera access is requested only when you record.</p>
+                  </div>
+                  <button class="primary-button full-width" id="saveScoreButton" type="submit" disabled>Save performance</button>
+                </form>
+              </article>
+
+              <article class="panel result-card">
+                <p class="eyebrow">Latest score</p>
+                <div id="scoreResult" class="score-display">
+                  <strong>--</strong>
+                  <span>Record a round to score it</span>
+                </div>
+                <p class="muted">
+                  The score uses recording length, vocal energy, and open-source pitch detection when available.
+                  It still does not read or download YouTube audio.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section id="scoreboardView" class="view">
+            <article class="panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Leaderboard</p>
+                  <h3>Couple scoreboard</h3>
+                </div>
+                <button class="secondary-button" id="refreshScoresButton" type="button">Refresh</button>
+              </div>
+              <div id="scoreList" class="list"></div>
+            </article>
+          </section>
+
+          <section id="saumyaView" class="view">
+            <div class="saumya-layout">
+              <article class="panel">
+                <p class="eyebrow">Saumyaaaaa</p>
+                <h3>Add something</h3>
+                <form id="noteForm" class="stacked-form">
+                  <label>
+                    Type
+                    <select id="noteTypeInput">
+                      <option value="note">Note</option>
+                      <option value="photo">Photo link</option>
+                      <option value="voice">Voice/audio link</option>
+                      <option value="memory">Memory</option>
+                      <option value="promise">Promise</option>
+                    </select>
+                  </label>
+                  <label>
+                    Title
+                    <input id="noteTitleInput" type="text" required placeholder="Title" />
+                  </label>
+                  <label>
+                    Message or URL
+                    <textarea id="noteBodyInput" required placeholder="Write a note or paste a link"></textarea>
+                  </label>
+                  <button class="primary-button full-width" type="submit">Add to Saumyaaaaa</button>
+                </form>
+              </article>
+              <article class="panel">
+                <div class="panel-heading">
+                  <div>
+                    <p class="eyebrow">Archive</p>
+                    <h3>Saved things</h3>
+                  </div>
+                  <button class="secondary-button" id="refreshNotesButton" type="button">Refresh</button>
+                </div>
+                <div id="noteList" class="list"></div>
+              </article>
+            </div>
+          </section>
+
+          <section id="surpriseView" class="view">
+            <article class="panel reading-panel">
+              <p class="eyebrow">Final surprise</p>
+              <h3 id="surpriseTitle">Locked for May 24</h3>
+              <p id="surpriseBody"></p>
+            </article>
+          </section>
+
+          <section id="adminView" class="view">
+            <article class="panel">
+              <p class="eyebrow">Admin</p>
+              <h3>Setup notes</h3>
+              <p>
+                Public signup is intentionally absent. Create approved users manually in Supabase,
+                then add their emails to the allowlist in the database and in <code>script.js</code>.
+              </p>
+              <pre class="code-block">1. Run supabase-schema.sql
+2. Disable public signup in Supabase Auth settings
+3. Create accounts for you and Saumya
+4. Add both emails to allowed_users</pre>
+            </article>
+          </section>
+        </main>
+      </section>
+    </div>
+
+    <script src="script.js?v=20260519-1"></script>
+  </body>
+</html>
