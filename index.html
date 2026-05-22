@@ -175,6 +175,8 @@
                     YouTube video URL to embed
                     <input id="youtubeEmbedUrlInput" type="url" placeholder="Paste a specific YouTube video link here" />
                   </label>
+                  <button class="secondary-button full-width" id="youtubeSearchButton" type="button">Find embeddable videos</button>
+                  <div id="youtubeResults" class="youtube-results"></div>
                   <input id="songArtistInput" type="hidden" />
                   <input id="youtubeUrlInput" type="hidden" />
                   <input id="lyricsUrlInput" type="hidden" />
@@ -190,6 +192,9 @@
                       Paste a specific YouTube video link to embed it here, or use Search YouTube to find a karaoke version.
                     </div>
                   </div>
+                  <p id="youtubeFallback" class="muted hidden">
+                    If the video says playback is disabled, open it on YouTube or pick another embeddable result.
+                  </p>
                   <div class="recorder-box">
                     <label>
                       Recording mode

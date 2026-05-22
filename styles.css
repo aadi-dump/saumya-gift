@@ -612,6 +612,45 @@ textarea {
   line-height: 1.55;
 }
 
+.youtube-results {
+  display: grid;
+  gap: 10px;
+}
+
+.youtube-result {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 12px;
+  width: 100%;
+  min-height: 76px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--ink);
+  text-align: left;
+}
+
+.youtube-result img {
+  width: 96px;
+  height: 54px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.youtube-result strong,
+.youtube-result em {
+  display: block;
+  line-height: 1.35;
+}
+
+.youtube-result em {
+  margin-top: 4px;
+  color: var(--muted);
+  font-style: normal;
+  font-size: 0.82rem;
+}
+
 .meter {
   overflow: hidden;
   height: 12px;

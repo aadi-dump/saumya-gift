@@ -37,6 +37,16 @@ The frontend has no signup screen. The database policies also check the allowlis
 
 The karaoke catalog uses YouTube search links with `karaoke version` added to the search phrase. The app can also embed a specific YouTube video when you paste its URL into the karaoke form. It does not download, extract, or rehost YouTube audio.
 
+For better in-app search, create a YouTube Data API key in Google Cloud and restrict it to your GitHub Pages domain. Add it to `script.js`:
+
+```js
+youtube: {
+  apiKey: "YOUR_YOUTUBE_DATA_API_KEY",
+},
+```
+
+The app requests embeddable video search results, but YouTube can still block some videos because of owner, region, copyright, or domain restrictions. The fallback is to open the video directly on YouTube.
+
 ## Karaoke Scoring
 
 The app loads the open-source `pitchy` package from `esm.sh` in the browser and uses it to estimate vocal pitch clarity/stability during recording. If Pitchy cannot load, scoring falls back to the original energy/length method.
