@@ -112,6 +112,10 @@ const storageKeys = {
 
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => Array.from(document.querySelectorAll(selector));
+const on = (selector, eventName, handler) => {
+  const element = $(selector);
+  if (element) element.addEventListener(eventName, handler);
+};
 
 function hasSupabase() {
   return Boolean(appConfig.supabase.url && appConfig.supabase.anonKey);
@@ -757,17 +761,17 @@ function bindEvents() {
 
   $$(".nav-item").forEach((item) => item.addEventListener("click", () => switchView(item.dataset.view)));
   $$("[data-jump]").forEach((item) => item.addEventListener("click", () => switchView(item.dataset.jump)));
-  $("#recordButton").addEventListener("click", () => startRecording().catch((error) => {
+  on("#recordButton", "click", () => startRecording().catch((error) => {
     $("#recordingStatus").textContent = error.message;
   }));
-  $("#stopButton").addEventListener("click", stopRecording);
-  $("#refreshScoresButton").addEventListener("click", refreshScores);
-  $("#refreshNotesButton").addEventListener("click", refreshNotes);
-  $("#songCatalogInput").addEventListener("change", updateSelectedSong);
-  $("#songInput").addEventListener("input", updateYoutubeSearchFromCustomSong);
-  $("#youtubeEmbedUrlInput").addEventListener("input", updateYoutubeEmbed);
-  $("#youtubeSearchButton").addEventListener("click", searchEmbeddableYoutubeVideos);
-  $("#youtubeResults").addEventListener("click", (event) => {
+  on("#stopButton", "click", stopRecording);
+  on("#refreshScoresButton", "click", refreshScores);
+  on("#refreshNotesButton", "click", refreshNotes);
+  on("#songCatalogInput", "change", updateSelectedSong);
+  on("#songInput", "input", updateYoutubeSearchFromCustomSong);
+  on("#youtubeEmbedUrlInput", "input", updateYoutubeEmbed);
+  on("#youtubeSearchButton", "click", searchEmbeddableYoutubeVideos);
+  on("#youtubeResults", "click", (event) => {
     const button = event.target.closest("[data-video-id]");
     if (button) chooseYoutubeResult(button.dataset.videoId);
   });
