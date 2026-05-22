@@ -16,8 +16,7 @@ Then open `http://localhost:5173`.
 
 Until Supabase is configured, the app uses local demo auth:
 
-- `aaditya@example.com` / `may24`
-- `saumya@example.com` / `may24`
+- `achokshi15@gmail.com` / `may24`
 
 Update these in `script.js`.
 

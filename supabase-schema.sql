@@ -98,8 +98,7 @@ with check (public.is_allowed_user());
 
 insert into public.allowed_users (email, role)
 values
-  ('aaditya@example.com', 'admin'),
-  ('saumya@example.com', 'member')
+  ('achokshi15@gmail.com', 'admin')
 on conflict (email) do update set role = excluded.role;
 
 insert into storage.buckets (id, name, public)

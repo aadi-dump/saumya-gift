@@ -2,15 +2,14 @@ const appConfig = {
   giftDateIndia: "2026-05-24T00:00:00+05:30",
   publicName: "Saumya",
   coupleNames: ["Aaditya", "Saumya"],
-  adminEmails: ["aaditya@example.com"],
-  allowedEmails: ["aaditya@example.com", "saumya@example.com"],
+  adminEmails: ["achokshi15@gmail.com"],
+  allowedEmails: ["achokshi15@gmail.com"],
   demoPasswords: {
-    "aaditya@example.com": "may24",
-    "saumya@example.com": "may24",
+    "achokshi15@gmail.com": "may24",
   },
   supabase: {
-    url: "",
-    anonKey: "",
+    url: "https://viszftpgdhzpwjlcjzgy.supabase.co",
+    anonKey: "sb_publishable_D9X-HEwHsOd32-WagjeOJA_DxnL8LxH",
   },
   karaokeChallenges: [
     "BTS Round",
