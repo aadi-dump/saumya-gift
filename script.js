@@ -620,7 +620,7 @@ function updateYoutubeEmbed() {
   const frame = $("#youtubeFrame");
   const empty = $("#youtubeEmptyState");
   const fallback = $("#youtubeFallback");
-  fallback.classList.add("hidden");
+  fallback?.classList.add("hidden");
   if (!videoId) {
     frame.classList.add("hidden");
     frame.removeAttribute("src");
@@ -631,7 +631,7 @@ function updateYoutubeEmbed() {
   frame.classList.remove("hidden");
   empty.classList.add("hidden");
   window.setTimeout(() => {
-    if (!frame.classList.contains("hidden")) fallback.classList.remove("hidden");
+    if (!frame.classList.contains("hidden")) fallback?.classList.remove("hidden");
   }, 1800);
 }
 
