@@ -11,6 +11,9 @@ const appConfig = {
     url: "https://viszftpgdhzpwjlcjzgy.supabase.co",
     anonKey: "sb_publishable_D9X-HEwHsOd32-WagjeOJA_DxnL8LxH",
   },
+  youtube: {
+    apiKey: "AIzaSyByShQNsnRICxKz-xeZ2_BWkTZDe080RLg",
+  },
   karaokeChallenges: [
     "BTS Round",
     "K-pop Round",
@@ -605,6 +608,7 @@ function updateYoutubeSearchFromCustomSong() {
   $("#youtubeSearchInput").value = query;
   $("#youtubeUrlInput").value = query ? makeYoutubeSearchUrl(query) : "";
   $("#openYoutubeButton").href = $("#youtubeUrlInput").value || "#";
+  clearYoutubeResults();
 }
 
 function makeYoutubeSearchUrl(query) {
@@ -615,15 +619,20 @@ function updateYoutubeEmbed() {
   const videoId = extractYoutubeVideoId($("#youtubeEmbedUrlInput").value.trim());
   const frame = $("#youtubeFrame");
   const empty = $("#youtubeEmptyState");
+  const fallback = $("#youtubeFallback");
+  fallback.classList.add("hidden");
   if (!videoId) {
     frame.classList.add("hidden");
     frame.removeAttribute("src");
     empty.classList.remove("hidden");
     return;
   }
-  frame.src = `https://www.youtube.com/embed/${videoId}`;
+  frame.src = `https://www.youtube.com/embed/${videoId}?origin=${encodeURIComponent(window.location.origin)}`;
   frame.classList.remove("hidden");
   empty.classList.add("hidden");
+  window.setTimeout(() => {
+    if (!frame.classList.contains("hidden")) fallback.classList.remove("hidden");
+  }, 1800);
 }
 
 function extractYoutubeVideoId(value) {
@@ -640,6 +649,80 @@ function extractYoutubeVideoId(value) {
     return "";
   }
   return "";
+}
+
+async function searchEmbeddableYoutubeVideos() {
+  const query = $("#youtubeSearchInput").value.trim();
+  const results = $("#youtubeResults");
+  if (!query) {
+    results.innerHTML = `<p class="muted">Choose or type a song first.</p>`;
+    return;
+  }
+  if (!appConfig.youtube.apiKey) {
+    results.innerHTML = `
+      <p class="muted">YouTube API key is not configured yet. Use Search YouTube, then paste a video URL that allows embedding.</p>
+    `;
+    return;
+  }
+
+  $("#youtubeSearchButton").disabled = true;
+  $("#youtubeSearchButton").textContent = "Searching...";
+  results.innerHTML = `<p class="muted">Searching embeddable karaoke videos...</p>`;
+  try {
+    const params = new URLSearchParams({
+      key: appConfig.youtube.apiKey,
+      part: "snippet",
+      type: "video",
+      maxResults: "6",
+      videoEmbeddable: "true",
+      q: query,
+    });
+    const response = await fetch(`https://www.googleapis.com/youtube/v3/search?${params}`);
+    const payload = await response.json();
+    if (!response.ok) {
+      throw new Error(payload.error?.message || "YouTube search failed.");
+    }
+    renderYoutubeResults(payload.items || []);
+  } catch (error) {
+    results.innerHTML = `<p class="form-message">${escapeHtml(error.message)}</p>`;
+  } finally {
+    $("#youtubeSearchButton").disabled = false;
+    $("#youtubeSearchButton").textContent = "Find embeddable videos";
+  }
+}
+
+function renderYoutubeResults(items) {
+  const results = $("#youtubeResults");
+  if (!items.length) {
+    results.innerHTML = `<p class="muted">No embeddable results found. Try the regular YouTube search link.</p>`;
+    return;
+  }
+  results.innerHTML = items.map((item) => {
+    const videoId = item.id?.videoId || "";
+    const title = item.snippet?.title || "YouTube video";
+    const channel = item.snippet?.channelTitle || "YouTube";
+    const thumb = item.snippet?.thumbnails?.medium?.url || item.snippet?.thumbnails?.default?.url || "";
+    return `
+      <button class="youtube-result" type="button" data-video-id="${escapeAttribute(videoId)}">
+        ${thumb ? `<img src="${escapeAttribute(thumb)}" alt="" />` : ""}
+        <span>
+          <strong>${escapeHtml(title)}</strong>
+          <em>${escapeHtml(channel)}</em>
+        </span>
+      </button>
+    `;
+  }).join("");
+}
+
+function chooseYoutubeResult(videoId) {
+  if (!videoId) return;
+  const url = `https://www.youtube.com/watch?v=${videoId}`;
+  $("#youtubeEmbedUrlInput").value = url;
+  updateYoutubeEmbed();
+}
+
+function clearYoutubeResults() {
+  $("#youtubeResults").innerHTML = "";
 }
 
 function escapeHtml(value) {
@@ -683,6 +766,11 @@ function bindEvents() {
   $("#songCatalogInput").addEventListener("change", updateSelectedSong);
   $("#songInput").addEventListener("input", updateYoutubeSearchFromCustomSong);
   $("#youtubeEmbedUrlInput").addEventListener("input", updateYoutubeEmbed);
+  $("#youtubeSearchButton").addEventListener("click", searchEmbeddableYoutubeVideos);
+  $("#youtubeResults").addEventListener("click", (event) => {
+    const button = event.target.closest("[data-video-id]");
+    if (button) chooseYoutubeResult(button.dataset.videoId);
+  });
 
   $("#karaokeForm").addEventListener("submit", async (event) => {
     event.preventDefault();
