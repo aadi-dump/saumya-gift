@@ -62,7 +62,7 @@ const appConfig = {
     },
   ],
   letter: [
-    "Hi Zippu, I know I havent been the greatest boyfriend ever, and I know there is a MASSIVE room for improvement, but please know that I love you so much. I have always loved you so so much! You are quite literally the best person i have ever met. I know a lot of this is very repetitive, but its because there are no other words for me to use. I am really sorry for everything! I know you dont like it too much, but I want you to have the best day of the year!!! And I really hope you get everything you've ever wanted in your life.",
+    "Hi Zippu, I know I havent been the greatest boyfriend ever, and I know there is a MASSIVE room for improvement, but please know that I love you so much. I have always loved you so so much! You are quite literally the best person i have ever met. I know a lot of this is very repetitive, but its because there are no other words for me to use. I am really sorry for everything! I know you dont like it too much, but I want you to have the best day of the year!!! And I really hope you get everything you've ever wanted in your life. I realize it more during gloomy days in Seattle, or on my current trip, where its all cloudy and dull, but I imagine being with you here, and it seems so great. I could live with you anywhere! You really bring that happiness in my life. I am really sorry for the way that I have been in the past few months. But please please know, that I love you so much!",
   ],
   finalSurprise: {
     titleBefore: "Locked for May 24",
