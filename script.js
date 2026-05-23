@@ -68,7 +68,8 @@ const appConfig = {
     titleBefore: "Locked for May 24",
     bodyBefore: "The final surprise opens on May 24 in India time.",
     titleAfter: "For you, always",
-    bodyAfter: "Replace this with the final message, video link, or promise you want her to see.",
+    bodyAfter: "Heres to eating the best burgers together, forever!",
+    imageUrl: "assets/final-gift.jpg",
   },
 };
 
@@ -211,6 +212,8 @@ function renderStaticContent() {
   $("#letterBody").innerHTML = appConfig.letter.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("");
   $("#surpriseTitle").textContent = isGiftOpen() ? appConfig.finalSurprise.titleAfter : appConfig.finalSurprise.titleBefore;
   $("#surpriseBody").textContent = isGiftOpen() ? appConfig.finalSurprise.bodyAfter : appConfig.finalSurprise.bodyBefore;
+  $("#surpriseImage").src = appConfig.finalSurprise.imageUrl;
+  $("#surpriseImage").classList.toggle("hidden", !isGiftOpen());
 
   $("#singerInput").innerHTML = appConfig.coupleNames.map((name) => `<option value="${escapeHtml(name)}">${escapeHtml(name)}</option>`).join("");
   $("#challengeInput").innerHTML = appConfig.karaokeChallenges.map((challenge) => `<option value="${escapeHtml(challenge)}">${escapeHtml(challenge)}</option>`).join("");
