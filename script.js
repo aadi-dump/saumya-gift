@@ -3,9 +3,10 @@ const appConfig = {
   publicName: "Saumya",
   coupleNames: ["Aaditya", "Saumya"],
   adminEmails: ["achokshi15@gmail.com"],
-  allowedEmails: ["achokshi15@gmail.com"],
+  allowedEmails: ["achokshi15@gmail.com", "saumya.ch24@gmail.com"],
   demoPasswords: {
     "achokshi15@gmail.com": "may24",
+    "saumya.ch24@gmail.com": "may24",
   },
   supabase: {
     url: "https://viszftpgdhzpwjlcjzgy.supabase.co",
@@ -68,7 +69,7 @@ const appConfig = {
     titleBefore: "Locked for May 24",
     bodyBefore: "The final surprise opens on May 24 in India time.",
     titleAfter: "For you, always",
-    bodyAfter: "Heres to eating the best burgers together, forever!",
+    bodyAfter: "Heres to eating the best burgers together, forever! Can't believe you are almost 300 years! and past your prime :( But I will still always love you.",
     imageUrl: "assets/final-gift.jpg",
   },
 };
